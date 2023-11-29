@@ -6,7 +6,7 @@
 #    By: osterger <osterger@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 09:21:38 by lboulatr          #+#    #+#              #
-#    Updated: 2023/11/18 02:38:09 by osterger         ###   ########.fr        #
+#    Updated: 2023/11/29 07:53:39 by osterger         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,16 @@ EOC						= \033[0m
 BG_GREEN 				= \033[42m
 BG_BLUE 				= \033[46m
 
-NAME					= 
+NAME					= RPN
 
 BUILD_DIR				= build/
 
 HEADER_DIR				= header/
-HEADER_FILES			= 
+HEADER_FILES			= RPN.hpp \
 	
 DIR						= srcs/
-SRC						=	
+SRC						= main.cpp \
+							RPN.cpp \
 
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 
