@@ -6,7 +6,7 @@
 /*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 02:42:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/26 11:32:46 by osterger         ###   ########.fr       */
+/*   Updated: 2023/11/29 06:12:59 by osterger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ class BitcoinExchange
 
         BitcoinExchange             &operator=(BitcoinExchange const &src);
 
-        void                        bitcoinManager(void);
+        void                        displayExchangeRate(void);
         void                        createMapInput(std::string file);
         void                        createMapData(void);
+        bool                        getExchangeRate(std::string input, std::string data);
+
 
     private:
 
         std::string                             _filename;
-        std::multimap<std::string, double>      _mapInput;
-        std::multimap<std::string, double>      _mapData;
+        std::multimap<std::string, float>      _mapInput;
+        std::multimap<std::string, float>      _mapData;
         
 };
 

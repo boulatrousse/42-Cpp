@@ -6,13 +6,15 @@
 /*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 06:02:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/26 13:03:48 by osterger         ###   ########.fr       */
+/*   Updated: 2023/11/29 06:18:39 by osterger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
 static bool dateIsValid(std::string date);
+static bool numberIsValid(float n);
+static void printRate(std::multimap<std::string, float>::iterator it, float rate);
 
 BitcoinExchange::BitcoinExchange(void)
 {
@@ -45,22 +47,60 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &src)
     return (*this);
 }
 
-void BitcoinExchange::bitcoinManager(void)
+void BitcoinExchange::displayExchangeRate(void)
 {
-    std::multimap<std::string, double>::iterator      tmpIt;
+    std::multimap<std::string, float>::iterator      itInput;
+    std::multimap<std::string, float>::iterator      itData;
+    std::multimap<std::string, float>::iterator      tmp;
 
-    for (typename std::multimap<std::string, double>::const_iterator itInput = this->_mapInput.begin(); itInput != this->_mapInput.end(); ++itInput)
+    for (itInput = this->_mapInput.begin(); itInput != this->_mapInput.end(); itInput++)
     {
-        for (typename std::multimap<std::string, double>::const_iterator itData = this->_mapData.begin(); itData != this->_mapData.end(); ++itData)
+        if (!dateIsValid((*itInput).first))
+            std::cout << "Error: bad input => " << (*itInput).first << std::endl;
+        else if (!numberIsValid((*itInput).second))
+            continue ;
+        else
         {
-            dateIsValid(itInput->first);
-            tmpIt = this->_mapData.lower_bound((*itData).first);
+            for (itData = this->_mapData.begin(); itData != this->_mapData.end(); itData++)
+            {
+                if (getExchangeRate(((*itInput).first), (*itData).first))
+                {
+                    tmp = this->_mapData.lower_bound((*itData).first);
 
-            std::cout << "lower = " << tmpIt->first << std::endl;
-            std::cout << "itDataFirst = " << itData->first;
-            std::cout << "\n\n";
+                    if (this->_mapData.find((*itInput).first) !=  this->_mapData.end())
+                        printRate(itInput, (*tmp).second);
+                    else
+                    {
+                        tmp--;
+                        printRate(itInput, (*tmp).second);
+                    }
+                    break ;
+                }
+            }
         }
     }
+    
+}
+
+bool BitcoinExchange::getExchangeRate(std::string input, std::string data)
+{
+    float               yearInput;
+    float               monthInput;
+    float               dayInput;
+    float               yearData;
+    float               monthData;
+    float               dayData;
+
+    yearInput = atof(input.substr(0).data());
+    monthInput = atof(input.substr(5).data());
+    dayInput = atof(input.substr(8).data());
+    yearData = atof(data.substr(0).data());
+    monthData = atof(data.substr(5).data());
+    dayData = atof(data.substr(8).data());
+
+    if (yearData >= yearInput && monthData >= monthInput && dayData >= dayInput)
+        return (true);
+    return (false);
 }
 
 void BitcoinExchange::createMapInput(std::string file)
@@ -70,7 +110,7 @@ void BitcoinExchange::createMapInput(std::string file)
     std::string                     date;
     std::string                     value;
     size_t                          pos;
-    double                          convertValue;
+    float                          convertValue;
 
     ifs.open(file.data(), std::ifstream::in);
     while (ifs.good() && !ifs.eof())
@@ -98,7 +138,7 @@ void BitcoinExchange::createMapData(void)
     std::string                     date;
     std::string                     value;
     size_t                          pos;
-    double                          convertValue;
+    float                          convertValue;
 
     ifs.open(fileData.data(), std::ifstream::in);
     while (ifs.good() && !ifs.eof())
@@ -108,7 +148,7 @@ void BitcoinExchange::createMapData(void)
         if (pos != std::string::npos)
         {
             date = line.substr(0, pos);
-            value = line.substr(pos + 2, line.size());
+            value = line.substr(pos + 1, line.size());
             convertValue = atof(value.data());
             this->_mapData.insert(std::make_pair(date, convertValue));
         }
@@ -120,10 +160,9 @@ static bool dateIsValid(std::string date)
     std::string         year;
     std::string         month;
     std::string         day;
-
-    double         yearDouble;
-    double         monthDouble;
-    double         dayDouble;
+    float               yearfloat;
+    float               monthfloat;
+    float               dayfloat;
 
     if (date.size() != 10)
         return (false);
@@ -133,15 +172,35 @@ static bool dateIsValid(std::string date)
     month = date.substr(1, 2);
     day = date.substr(4, date.size());
 
-    yearDouble = atof(year.data());
-    monthDouble = atof(month.data());
-    dayDouble = atof(day.data());
+    yearfloat = atof(year.data());
+    monthfloat = atof(month.data());
+    dayfloat = atof(day.data());
 
-    if (yearDouble < 2009 || yearDouble > 2023)
+    if (yearfloat < 2009 || yearfloat > 2023)
         return (false);
-    if (monthDouble <= 0 || monthDouble > 12)
+    if (monthfloat <= 0 || monthfloat > 12)
         return (false);
-    if (dayDouble <= 0 || monthDouble > 31)
+    if (dayfloat <= 0 || monthfloat > 31)
         return (false);
     return (true);
+}
+
+static bool numberIsValid(float n)
+{
+    if (n < 0)
+    {
+        std::cout << "Error: not a positive number." << std::endl;
+        return (false);
+    }
+    else if (n > 1000)
+    {
+        std::cout << "Error: number too large." << std::endl;
+        return (false);
+    }
+    return (true);
+}
+
+static void printRate(std::multimap<std::string, float>::iterator it, float rate)
+{
+    std::cout << (*it).first << " => " << (*it).second << " = " << (*it).second * rate << std::endl;
 }

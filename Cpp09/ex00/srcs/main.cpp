@@ -6,7 +6,7 @@
 /*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 02:41:36 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/26 12:48:55 by osterger         ###   ########.fr       */
+/*   Updated: 2023/11/29 06:12:59 by osterger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     file = argv[1];
     btc.createMapInput(file);
     btc.createMapData();
-    btc.bitcoinManager();
+    btc.displayExchangeRate();
 
     return (SUCCESS);
 }
