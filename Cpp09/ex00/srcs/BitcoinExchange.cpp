@@ -6,7 +6,7 @@
 /*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 06:02:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/29 06:18:39 by osterger         ###   ########.fr       */
+/*   Updated: 2023/11/29 07:52:13 by osterger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void BitcoinExchange::createMapInput(std::string file)
 void BitcoinExchange::createMapData(void)
 {
     std::ifstream                   ifs;
-    std::string                     fileData = "data.txt";
+    std::string                     fileData = "data.csv";
     std::string                     line;
     std::string                     date;
     std::string                     value;
