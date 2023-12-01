@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:56:10 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/12/01 15:43:06 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:24:38 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ int     Span::shortestSpan(void)
 {
     int         shortest = INT_MAX;
     int         tmp = 0;
-
+    
     if (this->_v.size() <= 1)
         throw Span::NoPossibleSpan();
 
     std::sort(this->_v.begin(), this->_v.end());
 
-    for (std::vector<int>::iterator it = this->_v.begin(); it != this->_v.end(); it++)
+    for (size_t i = 1; i < this->_v.size(); i++)
     {
-        tmp = abs(*it - *(it - 1));
+        tmp = abs(this->_v[i]) - abs(this->_v[i - 1]);
         if (tmp < shortest)
             shortest = tmp;
     }
