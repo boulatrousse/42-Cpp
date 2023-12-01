@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 08:00:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/29 08:51:31 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:29:22 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@ RPN &RPN::operator=(RPN const &src)
     this->_stack = src._stack;
 
     return (*this);
+}
+
+void RPN::fillStack(std::string arg)
+{
+    for (size_t i = 0; i < arg.size(); i++)
+    {
+        if (arg[i] != ' ')
+            this->_stack.push(arg[i]);
+    }
+    
+    std::cout << "Stack size : " << this->_stack.size() << std::endl;
 }
 
 bool RPN::checkArg(std::string arg)

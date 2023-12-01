@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:10:10 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/11/27 10:45:55 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:17:35 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
+    delete a;
 }
 
 // int main(int, char**)

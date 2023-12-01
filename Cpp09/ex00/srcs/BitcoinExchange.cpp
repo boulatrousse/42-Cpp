@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 06:02:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/29 07:52:13 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:40:48 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,11 +176,13 @@ static bool dateIsValid(std::string date)
     monthfloat = atof(month.data());
     dayfloat = atof(day.data());
 
+    if (yearfloat == 2009 && dayfloat < 2)
+        return (false);
     if (yearfloat < 2009 || yearfloat > 2023)
         return (false);
-    if (monthfloat <= 0 || monthfloat > 12)
+    if (monthfloat < 1 || monthfloat > 12)
         return (false);
-    if (dayfloat <= 0 || monthfloat > 31)
+    if (dayfloat < 1 || monthfloat > 31)
         return (false);
     return (true);
 }

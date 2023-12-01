@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:57:39 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/29 08:34:17 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:09:56 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,16 @@ class RPN
         RPN(RPN const &src);
         ~RPN(void);
 
-        RPN             &operator=(RPN const &src);
+        RPN                     &operator=(RPN const &src);
 
-        bool            checkArg(std::string arg);
+        void                    fillStack(std::string arg);
+        bool                    checkArg(std::string arg);
 
     private:
 
-        std::string         _validChars;
-        std::string         _arg;
-        std::stack<int>     _stack;
+        std::string             _validChars;
+        std::string             _arg;
+        std::stack<char>        _stack;
         
 };
 

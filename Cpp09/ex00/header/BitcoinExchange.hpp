@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 02:42:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/29 06:12:59 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:38:25 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ class BitcoinExchange
 
     private:
 
-        std::string                             _filename;
-        std::multimap<std::string, float>      _mapInput;
-        std::multimap<std::string, float>      _mapData;
+        std::string                                _filename;
+        std::multimap<std::string, float>          _mapInput;
+        std::multimap<std::string, float>          _mapData;
         
 };
 

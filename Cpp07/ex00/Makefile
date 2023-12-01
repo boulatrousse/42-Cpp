@@ -6,11 +6,11 @@
 #    By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 09:21:38 by lboulatr          #+#    #+#              #
-#    Updated: 2023/10/10 16:28:39 by lboulatr         ###   ########.fr        #
+#    Updated: 2023/12/01 15:17:04 by lboulatr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY:					all $(NAME) clear mkbuild clear clean fclean re init
+.PHONY:					all $(NAME) clear mkbuild clean fclean re init
 
 RED			            = \033[1;31m
 GREEN					= \033[1;32m
@@ -41,7 +41,7 @@ CLEAR					= clear
 $(BUILD_DIR)%.o: 		$(DIR)%.cpp $(HEADER_DIR)* Makefile
 							@mkdir -p $(@D)
 							@echo "$(BG_BLUE)[CREATE]$(EOC) $@"
-							@$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I/usr/include -O3 -c $< -o $@
+							@$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I/usr/include -c $< -o $@
 
 all: 					clear mkbuild $(HEADER_DIR) $(NAME)
 
@@ -63,7 +63,6 @@ $(NAME): 				$(OBJECTS)
 clean:					
 							@${RM} $(OBJECTS)
 							@${RM} ${BUILD_DIR}
-							@${RM} *_shrubbery
 							@echo "$(RED)[CLEAN DONE] $(EOC)"
 
 fclean:					clean

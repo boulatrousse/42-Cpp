@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:55:10 by osterger          #+#    #+#             */
-/*   Updated: 2023/11/29 08:30:08 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:34:03 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int main(int argc, char **argv)
         printError("Error.\nWrong arguments.");
         return (FAILURE);
     }
+
+    rpn.fillStack(arg);
     
     return (SUCCESS);
 }
@@ -41,4 +43,5 @@ static void printError(std::string error)
     std::cout << "\033[1;31m";
     std::cout << error;
     std::cout << "\033[0m" << std::endl;
+}
 }
