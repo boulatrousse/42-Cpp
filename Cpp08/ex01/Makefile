@@ -6,7 +6,7 @@
 #    By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 09:21:38 by lboulatr          #+#    #+#              #
-#    Updated: 2023/12/01 11:46:17 by lboulatr         ###   ########.fr        #
+#    Updated: 2023/12/01 15:20:43 by lboulatr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ CLEAR					= clear
 $(BUILD_DIR)%.o: 		$(DIR)%.cpp $(HEADER_DIR)* Makefile
 							@mkdir -p $(@D)
 							@echo "$(BG_BLUE)[CREATE]$(EOC) $@"
-							@$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I/usr/include -O3 -c $< -o $@
+							@$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I/usr/include -c $< -o $@
 
 all: 					clear mkbuild $(HEADER_DIR) $(NAME)
 
