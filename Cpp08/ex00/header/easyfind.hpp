@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:26:35 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/11/04 05:10:44 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:24:06 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,20 @@
 template<typename T>
 int    easyfind(T &ctn, int i)
 {
-    for (typename T::iterator it = ctn.begin(); it != ctn.end(); it++)
+    typename T::iterator it = std::find(ctn.begin(), ctn.end(), i);
+
+    if (it != ctn.end())
     {
-        if (*it == i)
-        {
-            std::cout << "the parameter `i` was found : " << i << std::endl;
-            return (SUCCESS);
-        }
+        std::cout << "\033[1;32m";
+        std::cout << "The parameter `i` " << i << " was found !" << std::endl;
+        std::cout << "\033[0m";
+        
+        return (SUCCESS);
     }
-    std::cout << "the parameter `i` was NOT found." << std::endl;
+    std::cout << "\033[1;31m";
+    std::cout << "The parameter `i` " << i << " was NOT found ." << std::endl;
+    std::cout << "\033[0m";
+    
     return (FAILURE);
 }
 
