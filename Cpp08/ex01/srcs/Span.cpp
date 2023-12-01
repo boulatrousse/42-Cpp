@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:56:10 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/12/01 11:26:50 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:43:06 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int     Span::shortestSpan(void)
 
     for (std::vector<int>::iterator it = this->_v.begin(); it != this->_v.end(); it++)
     {
-        tmp = abs(*it - *(it + 1));
+        tmp = abs(*it - *(it - 1));
         if (tmp < shortest)
             shortest = tmp;
     }
