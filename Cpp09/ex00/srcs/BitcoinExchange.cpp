@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 06:02:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/01 13:40:48 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:58:56 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void BitcoinExchange::createMapInput(std::string file)
     std::string                     date;
     std::string                     value;
     size_t                          pos;
-    float                          convertValue;
-
+    float                           convertValue;
+    
     ifs.open(file.data(), std::ifstream::in);
     while (ifs.good() && !ifs.eof())
     {
@@ -126,7 +126,7 @@ void BitcoinExchange::createMapInput(std::string file)
                 this->_mapInput.insert(std::make_pair(date, convertValue));
         }
         else
-            this->_mapInput.insert(std::make_pair(line, -1));
+            this->_mapInput.insert(std::make_pair(line, 0));
     }
 }
 
@@ -176,13 +176,15 @@ static bool dateIsValid(std::string date)
     monthfloat = atof(month.data());
     dayfloat = atof(day.data());
 
+    if (yearfloat == 2022 && monthfloat > 3 && dayfloat > 29)
+        return (false);
     if (yearfloat == 2009 && dayfloat < 2)
         return (false);
     if (yearfloat < 2009 || yearfloat > 2023)
         return (false);
     if (monthfloat < 1 || monthfloat > 12)
         return (false);
-    if (dayfloat < 1 || monthfloat > 31)
+    if (dayfloat < 1 || dayfloat > 31)
         return (false);
     return (true);
 }
