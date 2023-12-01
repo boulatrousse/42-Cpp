@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:56:16 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/11/18 02:21:54 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:31:26 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <vector>
 # include <stdlib.h>
 # include <limits.h>
+# include <algorithm>
 
 class Span
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:56:10 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/11/18 02:21:50 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:26:50 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int     Span::shortestSpan(void)
 
     if (this->_v.size() <= 1)
         throw Span::NoPossibleSpan();
-    
+
+    std::sort(this->_v.begin(), this->_v.end());
+
     for (std::vector<int>::iterator it = this->_v.begin(); it != this->_v.end(); it++)
     {
         tmp = abs(*it - *(it + 1));
@@ -66,21 +68,16 @@ int     Span::shortestSpan(void)
 
 int     Span::longestSpan(void)
 {
-    int         max = INT_MIN;
-    int         min = INT_MAX;
-
+    int         smallest = INT_MAX;
+    int         longest;
+    
     if (this->_v.size() <= 1)
         throw Span::NoPossibleSpan();
+    
+    smallest = *std::min_element(this->_v.begin(), this->_v.end());
+    longest = *std::max_element(this->_v.begin(), this->_v.end());
 
-    for (std::vector<int>::iterator it = this->_v.begin(); it != this->_v.end(); it++)
-    {
-        if (*it > max)
-            max = *it;
-        if (*it < min)
-            min = *it;
-    }
-
-    return (max - min);
+    return (abs(longest) - abs(smallest));
 }
 
 int     Span::sizeSpan(void) const
