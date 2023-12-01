@@ -6,11 +6,11 @@
 #    By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 09:21:38 by lboulatr          #+#    #+#              #
-#    Updated: 2023/10/11 13:25:27 by lboulatr         ###   ########.fr        #
+#    Updated: 2023/12/01 11:46:06 by lboulatr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY:					all $(NAME) clear mkbuild clear clean fclean re init
+.PHONY:					all $(NAME) mkbuild clear clean fclean re init
 
 RED			            = \033[1;31m
 GREEN					= \033[1;32m
@@ -63,7 +63,6 @@ $(NAME): 				$(OBJECTS)
 clean:					
 							@${RM} $(OBJECTS)
 							@${RM} ${BUILD_DIR}
-							@${RM} *_shrubbery
 							@echo "$(RED)[CLEAN DONE] $(EOC)"
 
 fclean:					clean
