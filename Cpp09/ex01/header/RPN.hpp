@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:57:39 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/01 14:09:56 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/02 12:09:43 by osterger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,19 @@ class RPN
 
         RPN                     &operator=(RPN const &src);
 
-        void                    fillStack(std::string arg);
         bool                    checkArg(std::string arg);
+
+        bool                    operations(void);
+        void                    addition(void);
+        void                    subtraction(void);
+        void                    multiplication(void);
+        void                    division(void);
 
     private:
 
-        std::string             _validChars;
         std::string             _arg;
-        std::stack<char>        _stack;
+        std::stack<int>         _stack;
+        int                     _status;
         
 };
 
