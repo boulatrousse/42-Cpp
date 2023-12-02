@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+         #
+#    By: osterger <osterger@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 09:21:38 by lboulatr          #+#    #+#              #
-#    Updated: 2023/12/01 11:45:51 by lboulatr         ###   ########.fr        #
+#    Updated: 2023/12/02 12:15:04 by osterger         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,16 @@ EOC						= \033[0m
 BG_GREEN 				= \033[42m
 BG_BLUE 				= \033[46m
 
-NAME					= 
+NAME					= PmergeMe
 
 BUILD_DIR				= build/
 
 HEADER_DIR				= header/
-HEADER_FILES			= 
+HEADER_FILES			= PmergeMe.hpp \
 	
 DIR						= srcs/
-SRC						=	
+SRC						= main.cpp \
+							PmergeMe.cpp \
 
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 
