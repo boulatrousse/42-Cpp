@@ -6,7 +6,7 @@
 /*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:11 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/02 16:05:06 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/03 14:38:37 by osterger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define PMERGEME_HPP
 
 # include <iostream>
-# include <vector>
 # include <cstdlib>
 # include <cstring>
+# include <algorithm>
+# include <vector>
+# include <deque>
+# include <set>
 
 class PmergeMe
 {
@@ -30,6 +33,7 @@ class PmergeMe
         PmergeMe                &operator=(PmergeMe const &src);
 
         bool                    checkArg(void);
+        void                    algo(void);
         void                    displayInfo(void);
 
     private:

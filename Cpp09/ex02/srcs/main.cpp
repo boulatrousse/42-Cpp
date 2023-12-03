@@ -6,7 +6,7 @@
 /*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:18:38 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/02 16:04:43 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/03 14:39:47 by osterger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,12 @@ int main(int argc, char **argv)
     PmergeMe pmerge(argc, argv);
 
     if (argc < 2)
-    {
-        printError("Error.\nUsage: ./PmergeMe [args1], ..., [argn].");
-        return (1);
-    }
-
+        return (printError("Error.\nUsage: ./PmergeMe [args1], ..., [argn]."), 1);
     if (!pmerge.checkArg())
-    {
-        printError("Error.\nWrong arguments.");
-        return (1);
-    }
+        return (printError("Error.\nWrong arguments."), 1);
 
     pmerge.displayInfo();
+    pmerge.algo(); 
 
     return (0);
 }

@@ -6,13 +6,14 @@
 /*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/02 16:04:22 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/03 14:38:16 by osterger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <PmergeMe.hpp>
 
 static bool checkIfValidChars(char *str);
+static bool checkIfDuplicates(std::vector<int> vec);
 
 PmergeMe::PmergeMe(void)
 {
@@ -68,8 +69,43 @@ bool PmergeMe::checkArg(void)
         tmpI = tmpD;
         _v.push_back(tmpI);
     }
+
+    if (!checkIfDuplicates(_v))
+        return (false);
     return (true);
 }
+
+void PmergeMe::algo(void)
+{
+    return ;
+}
+
+void PmergeMe::displayInfo(void)
+{
+    std::vector<int>    tmpVector = this->_v;
+    
+    std::cout << "\033[1;36m";
+    std::cout << "Integer sequence BEFORE sorting :  ";
+    std::cout << "\033[0m";
+    
+    for (size_t i = 0; i < tmpVector.size(); i++)
+        std::cout << tmpVector[i] << " ";
+    std::cout << std::endl;
+
+    std::cout << "\033[1;32m";
+    std::cout << "Integer sequence AFTER sorting :   ";
+    std::cout << "\033[0m";
+
+    std::sort(tmpVector.begin(), tmpVector.end());
+
+    for (size_t i = 0; i < tmpVector.size(); i++)
+        std::cout << tmpVector[i] << " ";
+    std::cout << std::endl;
+}
+
+
+
+// ===== STATIC FUNCTIONS =====
 
 static bool checkIfValidChars(char *str)
 {
@@ -83,18 +119,11 @@ static bool checkIfValidChars(char *str)
     return (true);
 }
 
-void PmergeMe::displayInfo(void)
+static bool checkIfDuplicates(std::vector<int> vec)
 {
-    std::cout << "\033[1;36m";
-    std::cout << "Integer sequence BEFORE sorting :  ";
-    std::cout << "\033[0m";
+    std::set<int>       dup(vec.begin(), vec.end());
     
-    for (size_t i = 0; i < _v.size(); i++)
-        std::cout << _v[i] << " ";
-    std::cout << std::endl;
-
-    std::cout << "\033[1;32m";
-    std::cout << "Integer sequence AFTER sorting :   ";
-    std::cout << "\033[0m";
-
+    if (vec.size() != dup.size())
+        return (false);
+    return (true);
 }
