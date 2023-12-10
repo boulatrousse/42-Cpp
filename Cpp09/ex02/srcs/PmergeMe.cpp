@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/10 10:48:49 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/10 15:46:07 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,58 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &src)
     return (*this);
 }
 
+void PmergeMe::launcher(void)
+{
+    this->displayInfo();
+    
+    return ;
+}
+
+// ===== SORT FUNCTIONS =====
+
+void PmergeMe::insertSortVector(std::vector<int> &vec)
+{
+    int         tmp = 0;
+    
+    for (size_t i = 0; i < vec.size(); i ++)
+    {
+        for (size_t j = i; j > 0; j--)
+        {
+            if (vec[j] < vec[j - 1])
+            {
+                tmp = vec[j];
+                vec[j] = vec[j - 1];
+                vec[j - 1] = tmp;
+            }
+        }
+    }
+    return ;
+}
+
+void PmergeMe::mergeSortVector(std::vector<int> &vec)
+{
+    std::vector<int>::iterator      middle = vec.begin() + (vec.size() / 2);
+    
+    if (vec.size() < 2)
+    {
+       insertSortVector(vec);
+        return ;
+    }
+    
+    std::vector<int>                left(vec.begin(), middle);
+    std::vector<int>                right(middle, vec.end());
+
+    mergeSortVector(left);
+    mergeSortVector(right);
+    std::merge(left.begin(), left.end(), right.begin(), right.end(), vec.begin());
+    
+    return ;
+}
+
+
+
+// ===== UTILS FUNCTIONS =====
+
 bool PmergeMe::checkArg(void)
 {
     int         tmpI = 0;
@@ -77,52 +129,27 @@ bool PmergeMe::checkArg(void)
     return (true);
 }
 
-void PmergeMe::insertionSortVector(void)
-{
-    int         tmp = 0;
-    
-    for (size_t i = 0; i < _v.size(); i ++)
-    {
-        for (size_t j = i; j > 0; j--)
-        {
-            if (_v[j] < _v[j - 1])
-            {
-                tmp = _v[j];
-                _v[j] = _v[j - 1];
-                _v[j - 1] = tmp;
-            }
-        }
-    }
-    return ;
-}
-
-// void PmergeMe::mergeSortVector(void)
-// {
-//     return ;
-// }
-
 void PmergeMe::displayInfo(void)
-{
-    std::vector<int>    tmpVector = this->_v;
-    
+{    
     std::cout << "\033[1;36m";
     std::cout << "Integer sequence BEFORE sorting :  ";
     std::cout << "\033[0m";
     
-    for (size_t i = 0; i < tmpVector.size(); i++)
-        std::cout << tmpVector[i] << " ";
+    for (size_t i = 0; i < _v.size(); i++)
+        std::cout << _v[i] << " ";
     std::cout << std::endl;
 
     std::cout << "\033[1;32m";
     std::cout << "Integer sequence AFTER sorting :   ";
     std::cout << "\033[0m";
 
-    std::sort(tmpVector.begin(), tmpVector.end());
+    mergeSortVector(this->_v);
 
-    for (size_t i = 0; i < tmpVector.size(); i++)
-        std::cout << tmpVector[i] << " ";
+    for (size_t i = 0; i < _v.size(); i++)
+        std::cout << _v[i] << " ";
     std::cout << std::endl;
 }
+
 
 
 

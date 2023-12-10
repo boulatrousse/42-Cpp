@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:18:38 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/10 10:11:29 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/10 15:27:56 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int main(int argc, char **argv)
     if (!pmerge.checkArg())
         return (printError("Error.\nWrong arguments."), 1);
 
-    pmerge.displayInfo();
-    pmerge.insertionSortVector();
+    pmerge.launcher();
 
     return (0);
 }
