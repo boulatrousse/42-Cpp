@@ -6,14 +6,13 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/10 15:46:07 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:20:22 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <PmergeMe.hpp>
 
 static bool checkIfValidChars(char *str);
-static bool checkIfDuplicates(std::vector<int> vec);
 
 PmergeMe::PmergeMe(void)
 {
@@ -48,6 +47,7 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &src)
     this->_argc = src._argc;
     this->_argv = src._argv;
     this->_v = src._v;
+    this->_l = src._l;
     
     return (*this);
 }
@@ -61,32 +61,13 @@ void PmergeMe::launcher(void)
 
 // ===== SORT FUNCTIONS =====
 
-void PmergeMe::insertSortVector(std::vector<int> &vec)
-{
-    int         tmp = 0;
-    
-    for (size_t i = 0; i < vec.size(); i ++)
-    {
-        for (size_t j = i; j > 0; j--)
-        {
-            if (vec[j] < vec[j - 1])
-            {
-                tmp = vec[j];
-                vec[j] = vec[j - 1];
-                vec[j - 1] = tmp;
-            }
-        }
-    }
-    return ;
-}
-
 void PmergeMe::mergeSortVector(std::vector<int> &vec)
 {
     std::vector<int>::iterator      middle = vec.begin() + (vec.size() / 2);
     
     if (vec.size() < 2)
     {
-       insertSortVector(vec);
+       insertSort(vec);
         return ;
     }
     
@@ -99,6 +80,26 @@ void PmergeMe::mergeSortVector(std::vector<int> &vec)
     
     return ;
 }
+
+// void PmergeMe::mergeSortList(std::list<int> &list)
+// {
+//     std::list<int>::iterator      middle = list.begin() + (list.size() / 2);
+    
+//     if (list.size() < 2)
+//     {
+//        insertSort(list);
+//         return ;
+//     }
+    
+//     std::list<int>                left(list.begin(), middle);
+//     std::list<int>                right(middle, list.end());
+
+//     mergeSortList(left);
+//     mergeSortList(right);
+//     std::merge(left.begin(), left.end(), right.begin(), right.end(), list.begin());
+    
+//     return ;
+// }
 
 
 
@@ -122,9 +123,10 @@ bool PmergeMe::checkArg(void)
 
         tmpI = tmpD;
         _v.push_back(tmpI);
+        _l.push_back(tmpI);
     }
 
-    if (!checkIfDuplicates(_v))
+    if (!checkIfDuplicates(_v) || !checkIfDuplicates(_l))
         return (false);
     return (true);
 }
@@ -164,14 +166,5 @@ static bool checkIfValidChars(char *str)
         if (strchr("1234567890-+", tmp[i]) == NULL)
             return (false);
     }
-    return (true);
-}
-
-static bool checkIfDuplicates(std::vector<int> vec)
-{
-    std::set<int>       dup(vec.begin(), vec.end());
-    
-    if (vec.size() != dup.size())
-        return (false);
     return (true);
 }
