@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/03 14:38:16 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/10 10:48:49 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ bool PmergeMe::checkArg(void)
         tmpD = atof(_argv[i]);
         if (tmpD < 0 || tmpD > 2147483647)
             return (false);
+        else if (tmpD == 0 && _argv[i][0] != '0')
+            return (false);
 
         tmpI = tmpD;
         _v.push_back(tmpI);
@@ -75,10 +77,29 @@ bool PmergeMe::checkArg(void)
     return (true);
 }
 
-void PmergeMe::algo(void)
+void PmergeMe::insertionSortVector(void)
 {
+    int         tmp = 0;
+    
+    for (size_t i = 0; i < _v.size(); i ++)
+    {
+        for (size_t j = i; j > 0; j--)
+        {
+            if (_v[j] < _v[j - 1])
+            {
+                tmp = _v[j];
+                _v[j] = _v[j - 1];
+                _v[j - 1] = tmp;
+            }
+        }
+    }
     return ;
 }
+
+// void PmergeMe::mergeSortVector(void)
+// {
+//     return ;
+// }
 
 void PmergeMe::displayInfo(void)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:18:38 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/03 14:39:47 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/10 10:11:29 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
         return (printError("Error.\nWrong arguments."), 1);
 
     pmerge.displayInfo();
-    pmerge.algo(); 
+    pmerge.insertionSortVector();
 
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:11 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/03 14:38:37 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/10 10:09:09 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ class PmergeMe
         PmergeMe                &operator=(PmergeMe const &src);
 
         bool                    checkArg(void);
-        void                    algo(void);
         void                    displayInfo(void);
+
+        void                    insertionSortVector(void);
 
     private:
 

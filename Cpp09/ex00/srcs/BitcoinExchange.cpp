@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 06:02:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/01 16:58:56 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/10 14:46:49 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ static bool dateIsValid(std::string date)
     float               yearfloat;
     float               monthfloat;
     float               dayfloat;
+    int                 dayPerMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (date.size() != 10)
         return (false);
@@ -181,6 +182,8 @@ static bool dateIsValid(std::string date)
     if (yearfloat == 2009 && dayfloat < 2)
         return (false);
     if (yearfloat < 2009 || yearfloat > 2023)
+        return (false);
+    if (dayfloat > dayPerMonth[(int)monthfloat - 1])
         return (false);
     if (monthfloat < 1 || monthfloat > 12)
         return (false);
