@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:11 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/10 16:18:52 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:32:18 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <cstring>
 # include <algorithm>
 # include <vector>
-# include <list>
+# include <deque>
 # include <set>
 
 class PmergeMe
@@ -37,7 +37,7 @@ class PmergeMe
         void                    displayInfo(void);
 
         void                    mergeSortVector(std::vector<int> &vec);
-        void                    mergeSortList(std::list<int> &list);
+        void                    mergeSortDeque(std::deque<int> &deque);
 
     private:
 
@@ -45,7 +45,7 @@ class PmergeMe
         char                    **_argv;
 
         std::vector<int>        _v;
-        std::list<int>          _l;
+        std::deque<int>         _d;
 
 };
 

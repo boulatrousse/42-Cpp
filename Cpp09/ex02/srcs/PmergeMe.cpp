@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/10 16:20:22 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:32:15 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &src)
     this->_argc = src._argc;
     this->_argv = src._argv;
     this->_v = src._v;
-    this->_l = src._l;
+    this->_d = src._d;
     
     return (*this);
 }
@@ -81,25 +81,25 @@ void PmergeMe::mergeSortVector(std::vector<int> &vec)
     return ;
 }
 
-// void PmergeMe::mergeSortList(std::list<int> &list)
-// {
-//     std::list<int>::iterator      middle = list.begin() + (list.size() / 2);
+void PmergeMe::mergeSortDeque(std::deque<int> &deque)
+{
+    std::deque<int>::iterator      middle = deque.begin() + (deque.size() / 2);
     
-//     if (list.size() < 2)
-//     {
-//        insertSort(list);
-//         return ;
-//     }
+    if (deque.size() < 2)
+    {
+       insertSort(deque);
+        return ;
+    }
     
-//     std::list<int>                left(list.begin(), middle);
-//     std::list<int>                right(middle, list.end());
+    std::deque<int>                left(deque.begin(), middle);
+    std::deque<int>                right(middle, deque.end());
 
-//     mergeSortList(left);
-//     mergeSortList(right);
-//     std::merge(left.begin(), left.end(), right.begin(), right.end(), list.begin());
+    mergeSortDeque(left);
+    mergeSortDeque(right);
+    std::merge(left.begin(), left.end(), right.begin(), right.end(), deque.begin());
     
-//     return ;
-// }
+    return ;
+}
 
 
 
@@ -123,10 +123,10 @@ bool PmergeMe::checkArg(void)
 
         tmpI = tmpD;
         _v.push_back(tmpI);
-        _l.push_back(tmpI);
+        _d.push_back(tmpI);
     }
 
-    if (!checkIfDuplicates(_v) || !checkIfDuplicates(_l))
+    if (!checkIfDuplicates(_v) || !checkIfDuplicates(_d))
         return (false);
     return (true);
 }
