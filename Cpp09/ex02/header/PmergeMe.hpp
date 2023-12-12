@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:11 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/10 16:32:18 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/12 10:43:35 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 # include <algorithm>
 # include <vector>
 # include <deque>
-# include <set>
+# include <ctime>
+# include <time.h>
+
+# define N 11
 
 class PmergeMe
 {
@@ -32,12 +35,9 @@ class PmergeMe
 
         PmergeMe                &operator=(PmergeMe const &src);
 
-        void                    launcher(void);
         bool                    checkArg(void);
         void                    displayInfo(void);
 
-        void                    mergeSortVector(std::vector<int> &vec);
-        void                    mergeSortDeque(std::deque<int> &deque);
 
     private:
 
@@ -81,6 +81,27 @@ void insertSort(T &cont)
             }
         }
     }
+}
+
+template <typename T>
+void mergeSort(T &cont)
+{
+    typename T::iterator      middle = cont.begin() + (cont.size() / 2);
+    
+    if (cont.size() <= N)
+    {
+        insertSort(cont);
+        return ;
+    }
+    
+    T    left(cont.begin(), middle);
+    T    right(middle, cont.end());
+
+    mergeSort(left);
+    mergeSort(right);
+    std::merge(left.begin(), left.end(), right.begin(), right.end(), cont.begin());
+
+    return ;
 }
 
 #endif

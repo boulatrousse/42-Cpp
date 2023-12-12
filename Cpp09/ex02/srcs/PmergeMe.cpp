@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/10 16:32:15 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/12 10:50:12 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,57 +52,6 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &src)
     return (*this);
 }
 
-void PmergeMe::launcher(void)
-{
-    this->displayInfo();
-    
-    return ;
-}
-
-// ===== SORT FUNCTIONS =====
-
-void PmergeMe::mergeSortVector(std::vector<int> &vec)
-{
-    std::vector<int>::iterator      middle = vec.begin() + (vec.size() / 2);
-    
-    if (vec.size() < 2)
-    {
-       insertSort(vec);
-        return ;
-    }
-    
-    std::vector<int>                left(vec.begin(), middle);
-    std::vector<int>                right(middle, vec.end());
-
-    mergeSortVector(left);
-    mergeSortVector(right);
-    std::merge(left.begin(), left.end(), right.begin(), right.end(), vec.begin());
-    
-    return ;
-}
-
-void PmergeMe::mergeSortDeque(std::deque<int> &deque)
-{
-    std::deque<int>::iterator      middle = deque.begin() + (deque.size() / 2);
-    
-    if (deque.size() < 2)
-    {
-       insertSort(deque);
-        return ;
-    }
-    
-    std::deque<int>                left(deque.begin(), middle);
-    std::deque<int>                right(middle, deque.end());
-
-    mergeSortDeque(left);
-    mergeSortDeque(right);
-    std::merge(left.begin(), left.end(), right.begin(), right.end(), deque.begin());
-    
-    return ;
-}
-
-
-
 // ===== UTILS FUNCTIONS =====
 
 bool PmergeMe::checkArg(void)
@@ -133,27 +82,32 @@ bool PmergeMe::checkArg(void)
 
 void PmergeMe::displayInfo(void)
 {    
-    std::cout << "\033[1;36m";
-    std::cout << "Integer sequence BEFORE sorting :  ";
-    std::cout << "\033[0m";
+    std::cout << "\033[1;36mInteger sequence before sorting :   \033[0m";;
     
     for (size_t i = 0; i < _v.size(); i++)
         std::cout << _v[i] << " ";
     std::cout << std::endl;
 
-    std::cout << "\033[1;32m";
-    std::cout << "Integer sequence AFTER sorting :   ";
-    std::cout << "\033[0m";
+    std::cout << "\033[1;32mInteger sequence after sorting :   \033[0m";
 
-    mergeSortVector(this->_v);
+    clock_t     startVector = clock();
+    mergeSort(this->_v);
+    clock_t     endVector = clock();
+
+    clock_t     startDeque = clock();
+    mergeSort(this->_d);
+    clock_t     endDeque = clock();
 
     for (size_t i = 0; i < _v.size(); i++)
         std::cout << _v[i] << " ";
-    std::cout << std::endl;
+    std::cout << "\n\n";
+
+    double durationVector = (double)(endVector - startVector) / CLOCKS_PER_SEC;
+    double durationDeque = (double)(endDeque - startDeque) / CLOCKS_PER_SEC;
+    
+    std::cout << "Time to process a range of " << _v.size() << " elements with std::vector : " << durationVector << " us\n";
+    std::cout << "Time to process a range of " << _d.size() << " elements with std::deque : " << durationDeque << " us\n";
 }
-
-
-
 
 // ===== STATIC FUNCTIONS =====
 
