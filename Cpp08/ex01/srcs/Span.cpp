@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:56:10 by lboulatr          #+#    #+#             */
-/*   Updated: 2023/12/01 16:24:38 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:04:39 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ Span::~Span(void)
     return ;
 }
 
-Span & Span::operator=(Span const & rhs)
+Span & Span::operator=(Span const & src)
 {
-    if (this != &rhs)
+    if (this != &src)
     {
-        this->_N = rhs._N;
+        this->_v.resize(src._v.size());
+        std::copy(src._v.begin(), src._v.end(), this->_v.begin());
+        this->_N = src._N;
     }
     
     return (*this);

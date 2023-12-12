@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/12 10:50:12 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/12 10:56:25 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ bool PmergeMe::checkArg(void)
 
 void PmergeMe::displayInfo(void)
 {    
-    std::cout << "\033[1;36mInteger sequence before sorting :   \033[0m";;
+    std::cout << "\033[1;36mInteger sequence before sorting :  \033[0m";;
     
     for (size_t i = 0; i < _v.size(); i++)
         std::cout << _v[i] << " ";
@@ -105,8 +105,8 @@ void PmergeMe::displayInfo(void)
     double durationVector = (double)(endVector - startVector) / CLOCKS_PER_SEC;
     double durationDeque = (double)(endDeque - startDeque) / CLOCKS_PER_SEC;
     
-    std::cout << "Time to process a range of " << _v.size() << " elements with std::vector : " << durationVector << " us\n";
-    std::cout << "Time to process a range of " << _d.size() << " elements with std::deque : " << durationDeque << " us\n";
+    std::cout << "Time to process a range of " << _v.size() << " elements with std::vector : \033[1;35m" << durationVector << " us.\033[0m\n";
+    std::cout << "Time to process a range of " << _d.size() << " elements with std::deque :  \033[1;35m" << durationDeque << " us.\033[0m\n";
 }
 
 // ===== STATIC FUNCTIONS =====
