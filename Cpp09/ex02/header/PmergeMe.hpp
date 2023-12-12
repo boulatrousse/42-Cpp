@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:11 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/12 10:43:35 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:49:25 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class PmergeMe
         PmergeMe                &operator=(PmergeMe const &src);
 
         bool                    checkArg(void);
-        void                    displayInfo(void);
+        void                    launcher(void);
 
 
     private:

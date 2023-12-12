@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:14 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/12 11:17:10 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:49:18 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ bool PmergeMe::checkArg(void)
     return (true);
 }
 
-void PmergeMe::displayInfo(void)
+void PmergeMe::launcher(void)
 {    
     std::cout << "Integer sequence before sorting :  ";;
     
