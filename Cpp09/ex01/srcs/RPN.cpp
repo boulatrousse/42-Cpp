@@ -6,11 +6,13 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 08:00:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/12 16:28:30 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:33:53 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+
+static bool checkIfOnlySpaces(std::string arg, size_t i);
 
 RPN::RPN(void)
 {
@@ -74,24 +76,29 @@ bool    RPN::operations(void)
     {
         if (_arg[i] == ' ')
             continue ;
-        else if (isdigit(_arg[i]))
+        else if (isdigit(_arg[i]) && (i + 1 != _arg.size()) && !checkIfOnlySpaces(_arg, i))
         {
             tmp = _arg[i] - 48;
             this->_stack.push(tmp);
         }
-        else if (_arg[i] == '+')
-            addition();
-        else if (_arg[i] == '-')
-            subtraction();
-        else if (_arg[i] == '*')
-            multiplication();
-        else if (_arg[i] == '/')
-            division();
+        else if (this->_stack.size() == 2)
+        {
+            if (_arg[i] == '+')
+                addition();
+            else if (_arg[i] == '-')
+                subtraction();
+            else if (_arg[i] == '*')
+                multiplication();
+            else if (_arg[i] == '/')
+                division();
+        }
+        else
+            return (false);
 
         if (this->_status == FAILURE)
             return (false);
-
     }
+    
     std::cout << "Final result = " << this->_stack.top() << std::endl;
 
     return (true);
@@ -172,4 +179,18 @@ void RPN::division()
 
     this->_stack.pop();
     this->_stack.push(y / x);
+}
+
+// ===== STATIC FUNCTIONS ===== //
+
+static bool checkIfOnlySpaces(std::string arg, size_t i)
+{
+    for (size_t j = i + 1; j < arg.size(); j++)
+    {
+        if (arg[j] == ' ')
+            continue;
+        else
+            return (false);
+    }
+    return (true);
 }
