@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 06:02:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/13 13:29:20 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:31:48 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,18 @@ void BitcoinExchange::createMapInput(std::string file)
     {
         std::getline(ifs, line);
         pos = line.find('|', 0);
-        if (pos != std::string::npos)
+        if (pos != std::string::npos && pos != line.size() - 1)
         {
             date = line.substr(0, pos - 1);
             value = line.substr(pos + 2, line.size());
-            convertValue = atof(value.data());
-            if (date != "date" && date != "Date")
-                this->_mapInput.insert(std::make_pair(date, convertValue));
+            if ( line[pos + 1] != ' ' || value.find(' ') != std::string::npos)
+                std::cout << "Error: bad input => " << line << std::endl;
+            else
+            {
+                convertValue = atof(value.data());
+                if (date != "date" && date != "Date")
+                    this->_mapInput.insert(std::make_pair(date, convertValue));
+            }
         }
         else
             this->_mapInput.insert(std::make_pair(line, 0));
@@ -145,7 +150,7 @@ void BitcoinExchange::createMapData(void)
     {
         std::getline(ifs, line);
         pos = line.find(',', 0);
-        if (pos != std::string::npos)
+        if (pos != std::string::npos && pos != line.size() - 1)
         {
             date = line.substr(0, pos);
             value = line.substr(pos + 1, line.size());
