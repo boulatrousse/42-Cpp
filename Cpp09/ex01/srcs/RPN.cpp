@@ -6,13 +6,14 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 08:00:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/13 12:33:53 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:42:47 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
 static bool checkIfOnlySpaces(std::string arg, size_t i);
+static bool checkIfSigns(std::string arg);
 
 RPN::RPN(void)
 {
@@ -53,7 +54,7 @@ RPN &RPN::operator=(RPN const &src)
 
 bool RPN::checkArg(std::string arg)
 {
-    if (!isdigit(arg[0]))
+    if (!isdigit(arg[0]) || !checkIfSigns(arg))
         return (false);
 
     for (size_t i = 0; i < arg.size(); i++)
@@ -192,5 +193,12 @@ static bool checkIfOnlySpaces(std::string arg, size_t i)
         else
             return (false);
     }
+    return (true);
+}
+
+static bool checkIfSigns(std::string arg)
+{
+    if (arg.find('-') == std::string::npos && arg.find('+') == std::string::npos && arg.find('*') == std::string::npos && arg.find('/') == std::string::npos)
+        return (false);
     return (true);
 }
