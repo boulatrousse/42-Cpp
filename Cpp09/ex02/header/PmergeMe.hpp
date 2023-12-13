@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:17:11 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/12 12:49:25 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/12 13:52:24 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <ctime>
 # include <time.h>
 
-# define N 11
+# define N 26
 
 class PmergeMe
 {

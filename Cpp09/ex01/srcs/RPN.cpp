@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 08:00:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/02 12:11:45 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:28:30 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,12 +158,17 @@ void RPN::division()
 
     x = this->_stack.top();
     this->_stack.pop();
-    if (this->_stack.size() == 0)
+    if (this->_stack.size() == 0 )
     {
         this->_status = FAILURE;
         return ;
     }
     y = this->_stack.top();
+    if (x == 0 || y == 0)
+    {
+        this->_status = FAILURE;
+        return ;
+    }
 
     this->_stack.pop();
     this->_stack.push(y / x);
