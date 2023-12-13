@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 08:00:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/13 12:42:47 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:51:10 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ bool    RPN::operations(void)
             tmp = _arg[i] - 48;
             this->_stack.push(tmp);
         }
-        else if (this->_stack.size() == 2)
+        else if (this->_stack.size() > 1)
         {
             if (_arg[i] == '+')
                 addition();
