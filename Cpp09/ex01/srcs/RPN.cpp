@@ -6,7 +6,7 @@
 /*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 08:00:21 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/13 15:38:02 by lboulatr         ###   ########.fr       */
+/*   Updated: 2023/12/16 11:07:40 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ bool    RPN::operations(void)
 
 void RPN::addition()
 {
-    int     x;
-    int     y;
+    double     x;
+    double     y;
 
     x = this->_stack.top();
     this->_stack.pop();
@@ -126,8 +126,8 @@ void RPN::addition()
 
 void RPN::subtraction()
 {
-    int     x;
-    int     y;
+    double     x;
+    double     y;
 
     x = this->_stack.top();
     this->_stack.pop();
@@ -144,8 +144,8 @@ void RPN::subtraction()
 
 void RPN::multiplication()
 {
-    int     x;
-    int     y;
+    double     x;
+    double     y;
 
     x = this->_stack.top();
     this->_stack.pop();
@@ -155,15 +155,15 @@ void RPN::multiplication()
         return ;
     }
     y = this->_stack.top();
-
+    
     this->_stack.pop();
     this->_stack.push(x * y);
 }
 
 void RPN::division()
 {
-    int     x;
-    int     y;
+    double     x;
+    double     y;
 
     x = this->_stack.top();
     this->_stack.pop();

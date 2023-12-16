@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osterger <osterger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lboulatr <lboulatr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:57:39 by osterger          #+#    #+#             */
-/*   Updated: 2023/12/02 12:09:43 by osterger         ###   ########.fr       */
+/*   Updated: 2023/12/16 11:05:31 by lboulatr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class RPN
     private:
 
         std::string             _arg;
-        std::stack<int>         _stack;
+        std::stack<double>         _stack;
         int                     _status;
         
 };
